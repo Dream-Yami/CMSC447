@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <title>
+            Welcome To The database Database!
+        </title>
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/style.css') }}">
+    </head>
+
+    <div class="navbar">
+        <a class="active" href="https://lively-lamington-2492db.netlify.app/">My home page</a>
+    </div>
+    <body>
+        <center>
+        <h1>Example Database</h1> 
+        <br>
+        <h2> {{message}} </h2>
+        <div class="forms">
+            <form method="POST">
+
+                <h2> Create User </h2>
+                <input type="Hidden" name="retType" value="CREATE"/>
+                <input type="Name" name="Name" placeholder="Name">
+                <br>
+                <input type="Id" name="Id" placeholder="Id">
+                <br>
+                <input type="Points" name="Points" placeholder="Points">
+                <br>
+                <input type="submit" name="submit">
+            </form>
+            <br><br>
+
+            <form method="POST">
+
+                <h2> Search User </h2>
+                <input type="Hidden" name="retType" value="SEARCH"/>
+                <input type="Name" name="Name" placeholder="Name">
+                <br>
+                <input type="submit" name="submit">
+            </form>
+            <br><br>
+
+            <form method="POST">
+
+                <h2> Delete User </h2>
+                <input type="Hidden" name="retType" value="DELETE"/>
+                <input type="Name" name="Name" placeholder="Name">
+                <br>
+                <input type="submit" name="submit">
+            </form>
+            <br><br>
+
+            <form method="POST">
+
+                <h2> Update User </h2>
+                <input type="Hidden" name="retType" value="UPDATE"/>
+                <input type="Name" name="Name" placeholder="Name">
+                <br>
+                <input type="Id" name="Id" placeholder="Id">
+                <br>
+                <input type="Points" name="Points" placeholder="Points">
+                <br>
+                <input type="submit" name="submit">
+            </form>
+            <br><br>
+        </div>
+        </center>
+        <table>
+            <tr>
+                <th class="type">Name</th>
+                <th>Id</th>
+                <th>Points</th>
+            </tr>
+            {% for row in rows %}
+            <tr>
+                {% for data in row %}
+                    <td>{{ data }}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+    </body>
+
+</html>
