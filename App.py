@@ -20,7 +20,8 @@ def home():
             exists = cursor.fetchall()
             print(exists)
             if len(exists) > 0:
-                return render_template('base.html', message = name + " already exists in database")
+                rows = pull_db()
+                return render_template('base.html', message = name + " already exists in database", rows = rows)
             cursor.executemany("insert into database values (?,?,?)", def_list)
             message = "Inserted " + name + " to Database!"
             connection.commit()
@@ -79,6 +80,7 @@ def home():
             print(exists)
             if len(exists) == 0:
                 rows = pull_db()
+                print("Catch test")
                 return render_template('base.html', message = name + " doesn't exist on database", rows = rows)
             
             toExec = "update database set ID = ? , Points = ? where Name = ?"
